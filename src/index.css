@@ -1,12 +1,28 @@
 @tailwind base; @tailwind components; @tailwind utilities;
 body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; }
 [dir='rtl'] body { font-family: 'Noto Nastaliq Urdu', serif; line-height: 2; }
-.page { background: linear-gradient(135deg, #e9f7f1, #fff4dc 60%, #e6e9ff); color: #0d1033; }
-.dark .page { background: linear-gradient(135deg, #0d1033, #12294a 60%, #0b3b35); color: #f2f5ff; }
-.glass { background: rgba(255,255,255,.55); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.6); box-shadow: 0 8px 32px rgba(13,16,51,.15); }
-.dark .glass { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
-.lowpower .glass { backdrop-filter: none; background: rgba(255,255,255,.85); }
-.dark.lowpower .glass, .dark .lowpower .glass { background: rgba(20,30,70,.92); }
-.field { @apply w-full rounded-xl px-4 py-3 bg-white/60 dark:bg-white/10 outline-none border border-transparent focus:border-jade; }
-.btn { @apply w-full rounded-xl py-3 font-bold bg-jade text-ink active:scale-95 transition; }
+.page { background: #eef6f3; color: #0d1033; }
+.dark .page { background: #080b26; color: #f2f5ff; }
+.glass { background: rgba(255,255,255,.5); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(255,255,255,.65); box-shadow: 0 10px 40px rgba(13,16,51,.14), inset 0 1px 0 rgba(255,255,255,.7); }
+.dark .glass { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); box-shadow: 0 10px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.15); }
+.lowpower .glass { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255,255,255,.88); }
+.dark.lowpower .glass { background: rgba(22,30,72,.94); }
+/* aurora: 3 blurred blobs, transform-only animation (cheap on GPU) */
+.aurora { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.aurora i { position: absolute; width: 70vmax; height: 70vmax; border-radius: 50%; filter: blur(70px); opacity: .55; animation: drift 18s ease-in-out infinite alternate; }
+.aurora i:nth-child(1) { background: #19c48a; top: -30vmax; left: -20vmax; }
+.aurora i:nth-child(2) { background: #6c7bff; bottom: -35vmax; right: -25vmax; animation-delay: -6s; }
+.aurora i:nth-child(3) { background: #ffb534; width: 40vmax; height: 40vmax; top: 35%; left: 40%; opacity: .35; animation-delay: -11s; }
+@keyframes drift { to { transform: translate3d(12vmax, 8vmax, 0) scale(1.15); } }
+/* rotating rainbow edge around the login card */
+.ring { position: relative; overflow: hidden; border-radius: 30px; padding: 1.5px; }
+.ring::before { content: ''; position: absolute; inset: -60%; background: conic-gradient(#19c48a, #6c7bff, #ffb534, #ff6b8b, #19c48a); animation: spin 7s linear infinite; }
+.ring > .inner { position: relative; border-radius: 28.5px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.thumb.on { transform: translateX(100%); }
+[dir='rtl'] .thumb.on { transform: translateX(-100%); }
+.lowpower .aurora i, .lowpower .ring::before { animation: none; }
+.lowpower .aurora i { filter: blur(40px); }
+.btn { @apply w-full rounded-2xl py-3.5 font-extrabold bg-gradient-to-r from-jade to-emerald-300 text-ink shadow-lg shadow-jade/30 active:scale-95 transition; }
+.btn2 { @apply w-full rounded-2xl py-3 font-bold bg-white/40 dark:bg-white/10 border border-white/50 dark:border-white/15 active:scale-95 transition; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
