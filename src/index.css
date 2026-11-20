@@ -1,0 +1,12 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; }
+[dir='rtl'] body { font-family: 'Noto Nastaliq Urdu', serif; line-height: 2; }
+.page { background: linear-gradient(135deg, #e9f7f1, #fff4dc 60%, #e6e9ff); color: #0d1033; }
+.dark .page { background: linear-gradient(135deg, #0d1033, #12294a 60%, #0b3b35); color: #f2f5ff; }
+.glass { background: rgba(255,255,255,.55); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.6); box-shadow: 0 8px 32px rgba(13,16,51,.15); }
+.dark .glass { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+.lowpower .glass { backdrop-filter: none; background: rgba(255,255,255,.85); }
+.dark.lowpower .glass, .dark .lowpower .glass { background: rgba(20,30,70,.92); }
+.field { @apply w-full rounded-xl px-4 py-3 bg-white/60 dark:bg-white/10 outline-none border border-transparent focus:border-jade; }
+.btn { @apply w-full rounded-xl py-3 font-bold bg-jade text-ink active:scale-95 transition; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
